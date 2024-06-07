@@ -3,7 +3,7 @@
 import { Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { confirmSignUp } from "aws-amplify/auth";
-import "../../../lib/amplify";
+import "../../../lib/amplifyClientUtils";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 

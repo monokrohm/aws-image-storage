@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "aws-amplify/auth";
-import "../../../lib/amplify";
+import "../../../lib/amplifyClientUtils";
 import "@aws-amplify/ui-react/styles.css";
 import { Button } from "@aws-amplify/ui-react";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,7 @@ export default function Login() {
                 await resendSignUpCode({ username });
                 redirectTo = "/auth/verify";
             }
+
             setSuccess("Login successful!");
             setError("");
         } catch (err) {

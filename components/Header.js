@@ -10,7 +10,7 @@ export default function Header() {
         <header className="flex fixed justify-between items-center top-0 p-5 px-8 w-full z-50 bg-[#0F172A]">
             <Link href="/">
                 <Image
-                    src="https://pngimg.com/uploads/bucket/bucket_PNG7764.png"
+                    src="/images/bucket.png"
                     alt="Bucket Image Storage"
                     width={70}
                     height={0}

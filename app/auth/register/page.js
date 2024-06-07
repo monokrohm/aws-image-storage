@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signUp } from "aws-amplify/auth";
-import "../../../lib/amplify";
+import "../../../lib/amplifyClientUtils";
 import "@aws-amplify/ui-react/styles.css";
 import { Button } from "@aws-amplify/ui-react";
 import { useRouter } from "next/navigation";
@@ -36,10 +36,10 @@ export default function Register() {
             //     "Sign up successful! Please check your email to verify your account."
             // );
             setError("");
+            router.push("/auth/verify");
         } catch (err) {
             setError(err.message);
         }
-        router.push("/auth/verify");
     };
 
     return (

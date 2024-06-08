@@ -12,7 +12,7 @@ export default function Header() {
                 <Image
                     src="/images/bucket.png"
                     alt="Bucket Image Storage"
-                    width={70}
+                    width={50}
                     height={0}
                     style={{ height: "auto" }}
                 ></Image>

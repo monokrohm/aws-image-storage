@@ -5,8 +5,6 @@ import { runWithAmplifyServerContext } from "./lib/amplifyServerUtils";
 export async function middleware(request) {
     const response = NextResponse.next();
 
-    console.log("Request URL:", response);
-
     const authenticated = await runWithAmplifyServerContext({
         nextServerContext: { request, response },
         operation: async (contextSpec) => {
@@ -19,6 +17,7 @@ export async function middleware(request) {
             }
         },
     });
+    console.log("Request URL:", request.url, "\nResponse:", response);
 
     console.log("Authenticated:", authenticated);
 

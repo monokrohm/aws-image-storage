@@ -2,20 +2,18 @@
 
 // import { useState } from "react";
 
-import { Button } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
 import "../lib/amplifyClientUtils";
-import { handleVerify } from "@/lib/cognitoFunctions";
+import { Button } from "@aws-amplify/ui-react";
+import { handleLogin } from "@/lib/cognitoFunctions";
 
-export default function VerifyForm() {
+export default function FormLogin() {
     // const [error, setError] = useState("");
     // const [success, setSuccess] = useState("");
 
     return (
         <div>
-            <h1>Verify Account</h1>
-            <p>Please check your email to verify your account.</p>
-            <form action={handleVerify}>
+            <h1>Login</h1>
+            <form action={handleLogin}>
                 <input
                     name="username"
                     type="text"
@@ -23,12 +21,12 @@ export default function VerifyForm() {
                     required
                 />
                 <input
-                    name="confirmationCode"
-                    type="text"
-                    placeholder="Confirmation Code"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
                     required
                 />
-                <Button type="submit">Verify</Button>
+                <Button type="submit">Login</Button>
             </form>
             {/* {error && <p style={{ color: "red" }}>{error}</p>}
             {success && <p style={{ color: "green" }}>{success}</p>} */}

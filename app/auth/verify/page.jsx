@@ -1,9 +1,9 @@
-import VerifyForm from "@/components/VerifyForm";
+import FormVerify from "@/components/FormVerify";
 
 export default function Verify() {
     return (
         <div>
-            <VerifyForm />
+            <FormVerify />
         </div>
     );
 }

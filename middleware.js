@@ -17,7 +17,6 @@ export async function middleware(request) {
             }
         },
     });
-    console.log("Request URL:", request.url, "\nResponse:", response);
 
     console.log("Authenticated:", authenticated);
 

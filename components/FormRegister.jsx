@@ -5,7 +5,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { Button } from "@aws-amplify/ui-react";
 import { handleRegister } from "@/lib/cognitoFunctions";
 
-export default function RegisterForm() {
+export default function FormRegister() {
     // const [error, setError] = useState("");
     // const [success, setSuccess] = useState("");
 

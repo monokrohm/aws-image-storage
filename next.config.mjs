@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: [],
+        domains: ["pczzuuaky5.execute-api.ap-southeast-2.amazonaws.com"],
     },
 };
 

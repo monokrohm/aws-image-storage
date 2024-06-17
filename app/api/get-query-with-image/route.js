@@ -1,8 +1,8 @@
 import getToken from "@/lib/getToken";
 import { NextResponse } from "next/server";
 
-export async function PUT(req) {
-    if (req.method !== "PUT") {
+export async function POST(req) {
+    if (req.method !== "POST") {
         return new NextResponse("Method not allowed", { status: 405 });
     }
 
@@ -21,29 +21,30 @@ export async function PUT(req) {
 
         const binaryFile = await file.arrayBuffer();
         const buffer = Buffer.from(binaryFile);
-        const id = file.name;
 
         const res = await fetch(
-            `https://pczzuuaky5.execute-api.ap-southeast-2.amazonaws.com/api/ito5225-image-bucket/${id}`,
+            `https://pczzuuaky5.execute-api.ap-southeast-2.amazonaws.com/api/getQueryWithImage`,
             {
-                method: "PUT",
+                method: "POST",
                 headers: {
                     Authorization: token,
-                    "Content-Type": file.type, // Required in order for the browser to display the image of a presigned URL
+                    "Content-Type": file.type,
                 },
                 body: buffer,
-                cache: "no-store",
             }
         );
 
         if (!res.ok) {
-            throw new Error("Failed to upload image to S3 via API Gateway");
+            throw new Error("Error querying images");
         }
 
-        return NextResponse.json({ success: true, id });
+        const data = await res.json();
+        // console.log("Data", data);
+        return NextResponse.json({ data });
     } catch (err) {
+        console.log("Error querying images:", err);
         return NextResponse.json(
-            { error: "Error uploading image" },
+            { error: "Error querying images" },
             { status: 500 }
         );
     }

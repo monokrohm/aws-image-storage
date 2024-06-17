@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import "../lib/amplifyClientUtils";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import currentAuthenticatedUser from "../lib/cognitoFunctions";
 import { signOut } from "aws-amplify/auth";
@@ -22,14 +22,14 @@ export default function DropMenu() {
         try {
             await signOut();
             window.location.href = "/auth/login";
-        } catch (error) {
-            console.log("error signing out: ", error);
+        } catch (err) {
+            console.log("error signing out: ", err);
         }
     };
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger className="outline-none">
                 <Image
                     src="/images/avatar.png"
                     alt="USER"
@@ -45,7 +45,7 @@ export default function DropMenu() {
                         window.location.href = "/user/dashboard";
                     }}
                 >
-                    Home
+                    Dashboard
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => router.push("/auth/login")}>
                     Login
@@ -57,9 +57,9 @@ export default function DropMenu() {
                 <DropdownMenuItem onClick={() => handleSignOut()}>
                     Sign Out
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => currentAuthenticatedUser()}>
+                {/* <DropdownMenuItem onClick={() => currentAuthenticatedUser()}>
                     Session Debugger
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
             </DropdownMenuContent>
         </DropdownMenu>
     );

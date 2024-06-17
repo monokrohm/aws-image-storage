@@ -2,9 +2,9 @@
 
 // import { useState } from "react";
 
-import { Button } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
 import "../lib/amplifyClientUtils";
+import "@aws-amplify/ui-react/styles.css";
+import { Button } from "@aws-amplify/ui-react";
 import { handleVerify } from "@/lib/cognitoFunctions";
 
 export default function FormVerify() {

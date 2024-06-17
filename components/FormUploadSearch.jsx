@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 
-export default function FormUpload() {
+export default function FormUploadSearch() {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [images, setImages] = useState([]);
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -19,17 +20,17 @@ export default function FormUpload() {
         formData.append('file', file);
 
         try {
-            const res = await fetch('/api/put-image', {
-                method: 'PUT',
+            const res = await fetch('/api/get-query-with-image', {
+                method: 'POST',
                 body: formData,
             });
 
-            if (!res.ok) {
-                throw new Error('Failed to upload image');
+            if (res.ok) {
+                const data = await res.json();
+                setImages(data.data);
+            } else {
+                throw new Error("Error querying images");
             }
-
-            // const data = await res.json();
-            // console.log('Image uploaded:', data.id);
 
         } catch (err) {
             console.error('Error uploading image:', err);
@@ -44,6 +45,16 @@ export default function FormUpload() {
             <button onClick={handleUpload} disabled={loading}>
                 {loading ? 'Uploading...' : 'Upload'}
             </button>
+            {images.length > 0 && (
+                <div>
+                    <h3>Images:</h3>
+                    <ul>
+                        {images.map((url, index) => (
+                            <li key={index}><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div >
     );
 }

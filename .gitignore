@@ -57,5 +57,6 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 
-object_detection.py
 Notes.txt
+object_detection.py
+object_detection_image_search.py

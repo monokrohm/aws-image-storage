@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="flex fixed justify-between items-center top-0 p-5 px-8 w-full z-50 bg-[#0F172A]">
+        <header className="flex sticky justify-between items-center top-0 p-5 px-8 mx-4 my-[-95.5px] bg-white border-b-[3px] border-b-[#0F172A] rounded-lg  z-50">
             <Link href="/">
                 <Image
                     src="/images/bucket.png"

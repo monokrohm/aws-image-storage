@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from './ui/button';
 
-export default function ImageTags() {
+export default function ImageTags({ imageKey }) {
     const [tags, setTags] = useState([]);
     const [tag, setTag] = useState('');
-    // const [image_url, setImageUrl] = useState("https://ito5225-image-bucket.s3.ap-southeast-2.amazonaws.com/img1.jpg");
-    const image_url = "https://ito5225-image-bucket.s3.ap-southeast-2.amazonaws.com/img3.jpg";
+    const image_url = `https://ito5225-image-bucket.s3.ap-southeast-2.amazonaws.com/${imageKey}`;
 
     const handleAddTag = async (image_url, tag) => {
         try {
@@ -65,7 +64,6 @@ export default function ImageTags() {
                 if (res.ok) {
                     const data = await res.json();
                     setTags(data.data.tags);
-                    // setImageUrl(data.image_url);
                 } else {
                     console.error('Error retrieving tags:', await res.json());
                 }
@@ -75,22 +73,26 @@ export default function ImageTags() {
         };
 
         fetchTags();
-    }, []);
+    }, [image_url]);
 
     return (
-        <div className='space-x-3'>
-            {tags.map((tag) => (
-                <Button key={tag} className="transform hover:scale-105 hover:bg-red-600 hover:rounded-lg transition duration-200 ease-out hover:drop-shadow-lg" onClick={() => handleDeleteTag(image_url, tag)}>{tag}</Button>
-            ))}
+        <div className='flex flex-col flex-1 border-r-4'>
+            <div className='border-b-4 px-4 text-nowrap'>{image_url}</div>
+            <div className='space-x-3 space-y-2 px-4 text-nowrap'>
 
-            <input
-                type='text'
-                placeholder='Add a tag'
-                value={tag}
-                onChange={(e) => setTag(e.target.value)}
-                className='outline-none'
-            />
-            <Button onClick={() => handleAddTag(image_url, tag)} className="justify-start transform hover:scale-105 hover:rounded-lg transition duration-200 ease-out hover:drop-shadow-lg">+</Button>
+                {tags.map((tag) => (
+                    <Button key={tag} className="transform hover:scale-105 hover:bg-red-600 hover:rounded-lg transition duration-200 ease-out hover:drop-shadow-lg" onClick={() => handleDeleteTag(image_url, tag)}>{tag}</Button>
+                ))}
+
+                <input
+                    type='text'
+                    placeholder='Add a tag'
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                    className='outline-none'
+                />
+                <Button onClick={() => handleAddTag(image_url, tag)} className="justify-start transform hover:scale-105 hover:rounded-lg transition duration-200 ease-out hover:drop-shadow-lg">+</Button>
+            </div>
         </div>
     );
 };

@@ -1,10 +1,10 @@
-import Image from "next/image";
+import HomePage from "@/components/HomePage";
+
 
 export default function Home() {
     return (
-        <main className="flex flex-col h-full items-center justify-center">
-            <div>Welcome</div>
-
+        <main className="flex flex-1 justify-center items-center">
+            <HomePage />
         </main>
     );
 }

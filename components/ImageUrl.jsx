@@ -1,10 +1,11 @@
 "use client"
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-export default function ImageUrl() {
+export default function ImageUrl({ imageKey }) {
     const [signedUrl, setSignedUrl] = useState('');
     const [imageName, setImageName] = useState('');
-    const key = "0-3.jpg";
+    const key = imageKey;
 
     useEffect(() => {
         async function fetchSignedUrl() {
@@ -32,8 +33,8 @@ export default function ImageUrl() {
     }, [signedUrl]);
 
     return (
-        <div className='flex'>
-            <a href={signedUrl} target="_blank" rel="noopener noreferrer">{imageName}</a>
+        <div className='flex flex-1 px-8 py-6'>
+            <Link href={signedUrl} target="_blank" rel="noopener noreferrer" className='text-decoration-line: underline'>{imageName}</Link>
         </div>
     );
 }
